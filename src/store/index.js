@@ -7,7 +7,9 @@ Vue.use(Vuex)
 export default new Vuex.Store({
     state: {
         user: {},
-        token: ''
+        token: '',
+        watchlist: [],
+        serie: {}
     },
     getters: {
         hasToken: state => !!state.token
@@ -18,6 +20,15 @@ export default new Vuex.Store({
         },
         setToken(state, payload) {
             state.token = payload
+        },
+        setWatchlist(state, payload) {
+            state.watchlist = payload
+        },
+        setSerie(state, payload) {
+            state.serie = payload
+        },
+        showSerie(state, payload){
+            state.serie = payload
         }
     },
     actions: {
@@ -87,6 +98,31 @@ export default new Vuex.Store({
             dispatch('setUser', {})
             dispatch('setToken', '')
             router.push({name: 'login'})
+        },
+        findWatchlist({ commit }){
+            fetch('https://guarded-headland-11685.herokuapp.com/user/watchlist',  {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                }
+            })
+            .then(res => res.json())
+            .then(watchlist => {
+                commit('setWatchlist', watchlist.data)
+            })
+
+        },
+        findSerie({ commit }, payload){
+            fetch('https://guarded-headland-11685.herokuapp.com/serie/'+payload, {
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                }
+            })
+            .then(res => res.json())
+            .then(serie => {
+                commit('showSerie', serie.data)
+            })
         }
     }
 })

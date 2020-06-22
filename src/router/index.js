@@ -54,6 +54,14 @@ const routes = [
       requeresAuth: true
     }
   },
+  {
+    path: '/serie/:id',
+    name: 'show-serie',
+    component: () => import(/* webpackChunkName: "show-serie" */ '../pages/ShowSerie.vue'),
+    meta: {
+      requeresAuth: true
+    }
+  }
 ]
 
 const router = new VueRouter({
@@ -63,6 +71,7 @@ const router = new VueRouter({
 })
 
 router.beforeEach((to, from, next) => {
+  document.title = `${to.name} - Series`
   const currentUser = localStorage.getItem('token')
   const requeresAuth = to.matched.some(record => record.meta.requeresAuth)
 
