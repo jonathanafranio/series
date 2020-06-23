@@ -24,6 +24,9 @@
         text-decoration: none
         box-shadow: 1px 1px 20px rgba(0,0,0,0.5)
 
+    h3
+        font-size: 1rem
+
 .card-image-top
     width: 100%
     
