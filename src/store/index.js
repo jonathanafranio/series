@@ -130,6 +130,10 @@ export default new Vuex.Store({
             .then(res => res.json())
             .then(watchedlist => {
                 commit('setWatchedlist', watchedlist.data)
+                
+            })
+            .catch((err) => {
+                console.log('err', err)
             })
 
         },
@@ -155,6 +159,74 @@ export default new Vuex.Store({
             .then(res => res.json())
             .then(serie => {
                 commit('showSerie', serie.data)
+            })
+        },
+
+        addOnWatchedlist(context, payload){
+            fetch('https://guarded-headland-11685.herokuapp.com/user/serie/watched', {
+                method: 'POST',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(response => {
+                document.getElementById('modalLabel').innerHTML = 'Adicionado...'
+                document.getElementById('modalBody').innerHTML = response.message
+                document.getElementById('modal').classList.add('show')
+            })
+        },
+        deleteFromWatchedlist(context, payload){
+            fetch('https://guarded-headland-11685.herokuapp.com/user/serie/watched/'+payload, {
+                method: 'DELETE',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                }
+            })
+            .then(()=>{
+                document.getElementById('modalLabel').innerHTML = 'Removido...'
+                document.getElementById('modalBody').innerHTML = 'Série removida da lista de já assistidas'
+                document.getElementById('modal').classList.add('show')
+                console.log('Série removida da lista de já assistidas')                
+            })
+        },
+
+        addOnWatchlist(context, payload){
+            fetch('https://guarded-headland-11685.herokuapp.com/user/serie/watchlist', {
+                method: 'POST',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(response => {
+                document.getElementById('modalLabel').innerHTML = 'Adicionado...'
+                document.getElementById('modalBody').innerHTML = response.message
+                document.getElementById('modal').classList.add('show')
+            })
+        },
+        deleteFromWatchlist(context, payload){
+            fetch('https://guarded-headland-11685.herokuapp.com/user/serie/watchlist/'+payload, {
+                method: 'DELETE',
+                headers: {
+                    'Access-Control-Allow-Origin': '*',
+                    'Authorization': 'Bearer ' + localStorage.getItem('token'),
+                }
+            })
+            .then(()=>{
+                document.getElementById('modalLabel').innerHTML = 'Removido...'
+                document.getElementById('modalBody').innerHTML = 'Série removida da watchlist'
+                document.getElementById('modal').classList.add('show')
+                console.log('Série removida da lista de favoritas')                
             })
         }
     }
