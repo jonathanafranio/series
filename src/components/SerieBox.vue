@@ -7,7 +7,9 @@
             <h3 class="text-center mb-0">{{ serie.title }}</h3>
             <div class="row mt-3 text-center">
                 <div class="col-12">
-                    <button class="btn btn-sm btn-outline-primary btn-block" @click.prevent="toggleWatchlist()">
+                    <button class="btn btn-sm btn-outline-primary btn-block"
+                     @click.prevent="toggleWatchlist()"
+                     :disabled="serie.watched">
                         {{ serie.watchlist ? 'Remover do Quero assistir' : 'Quero assistir' }}
                     </button>
                 </div>
@@ -99,7 +101,7 @@
         text-decoration: none
         background: #202020
     
-        .btn-outline-primary
+        .btn-outline-primary:not([disabled])
             background: #007bff
             color: var(--white)
         
@@ -110,6 +112,10 @@
     h3
         min-height: 40px
         font-size: 1rem
+
+.btn
+    &[disabled]
+        opacity: .6
 
 .card-image-top
     width: 100%
