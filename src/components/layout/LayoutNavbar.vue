@@ -39,7 +39,7 @@
                  exact-active-class="active"
                  :to="{ name: route.name }"
                  v-for="(route, i) in routes">
-                    <a href="#" class="nav-link" :title="route.meta.title">{{ route.meta.label }}</a>
+                    <a href="#" class="nav-link" :title="route.meta.title" @click="toggleMenu()">{{ route.meta.label }}</a>
                 </router-link>
             </ul>
         </nav>
