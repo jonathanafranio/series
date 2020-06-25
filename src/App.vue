@@ -48,6 +48,7 @@
 
 .modal
     background: rgba(0, 0, 0, .6)
+    color: var(--dark)
     &.show
         display: block
 
