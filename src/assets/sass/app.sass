@@ -6,6 +6,26 @@
 *
     font-family: 'Rubik', sans-serif
 
+body
+    //background: var(--dark)
+    background: #141414
+    color: var(--white)
+
+.navbar-expand-lg
+    background: #000
+    .navbar-brand
+        color: var(--red)
+
+    .nav-item
+        opacity: .6
+        &:hover,
+        &.active
+            opacity: 1
+    
+    .nav-link,
+    .btn
+        color: var(--white)
+
 .material-icons
     &.md-18
         font-size: 18px
@@ -18,3 +38,6 @@
 
     &.md-48
         font-size: 48px
+
+hr
+    border-color: var(--white)

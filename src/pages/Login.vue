@@ -11,7 +11,7 @@
                         <input type="password" class="form-control" placeholder="Senha" v-model="form.password" required>
                     </div>
 
-                    <button class="btn btn-primary d-blox w-100">
+                    <button class="btn btn-danger d-blox w-100">
                         Entrar
                     </button>
                 </div>
@@ -56,4 +56,8 @@
 
     .card
         width: 30%
+        min-width: 280px
+        overflow: hidden 
+        .card-header
+            background: #000
 </style>

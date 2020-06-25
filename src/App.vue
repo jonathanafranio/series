@@ -50,4 +50,5 @@
     background: rgba(0, 0, 0, .6)
     &.show
         display: block
+
 </style>

@@ -66,18 +66,29 @@ export default {
         width: 100%
         @include flex-center(false)
 
+        @media (max-width: 575px)
+            flex-direction: column
+
         .home-link
-            flex: 0 0 25%
             margin: 0 15px
-            padding: 50px 0
+            padding: 5px 0
             transition: .4s
             color: var(--white)
             @include flex-center(true)
+            
+            @media (max-width: 575px)
+                width: 280px
+                margin-bottom: 5px
 
-            &:hover
-                transform: scale(1.1)
-                text-decoration: none
-                box-shadow: 0 10px 20px rgba(0,0,0,0.5)
+            @media (min-width: 576px)
+                flex: 0 0 25%
+                padding: 50px 0
+
+            @media (min-width: 1024px)
+                &:hover
+                    transform: scale(1.1)
+                    text-decoration: none
+                    box-shadow: 0 10px 20px rgba(0,0,0,0.5)
 
             &:first-child
                 background-color: var(--blue)
@@ -87,8 +98,18 @@ export default {
                 background-color: var(--red)
 
     .btn-exit
+        color: var(--white)
         position: absolute
-        top: 40px
-        right: 40px
+        @media (max-width: 575px)
+            top: 0px
+            right: 0px
+            
+        @media (min-width: 576px)
+            top: 40px
+            right: 40px
+
+    h2
+        @media (max-width: 575px)
+            font-size: 1rem
 
 </style>

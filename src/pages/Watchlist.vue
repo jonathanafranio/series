@@ -4,7 +4,7 @@
         <hr>
 
         <div class="row">
-            <div class="col-lg-3 col-md-3 col-sm-4 cols-6"
+            <div class="col-lg-3 col-md-4 col-sm-6 cols-6"
              :key="item.id"
              v-for="item in watchlist">
                 <SerieBox :serie="item" />

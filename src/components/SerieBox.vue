@@ -1,17 +1,19 @@
 <template>
     <router-link class="card mb-4" :to="{ name: 'show-serie', params: { id: serie.id } }">
-        <img :src="serie.image" :alt="serie.title" class="card-image-top">
+        <div class="card-image-top">
+            <img :src="serie.image.replaceAll('32','300').replaceAll('44','312')" :alt="serie.title">
+        </div>
         <div class="card-body">
             <h3 class="text-center mb-0">{{ serie.title }}</h3>
             <div class="row mt-3 text-center">
-                <div class="col">
-                    <button class="btn btn-sm btn-primary btn-block" @click.prevent="toggleWatchlist()">
-                        {{ serie.watchlist ? 'Não quero assistir' : 'Quero assistir' }}
+                <div class="col-12">
+                    <button class="btn btn-sm btn-outline-primary btn-block" @click.prevent="toggleWatchlist()">
+                        {{ serie.watchlist ? 'Remover do Quero assistir' : 'Quero assistir' }}
                     </button>
                 </div>
-                <div class="col">
-                    <button class="btn btn-sm btn-warning btn-block" @click.prevent="toggleWatchedlist()">
-                        {{ serie.watched ? 'Não assisti' : 'Já assisti' }}
+                <div class="col-12 mt-2">
+                    <button class="btn btn-sm btn-outline-warning btn-block" @click.prevent="toggleWatchedlist()">
+                        {{ serie.watched ? 'Remover do Já assisti' : 'Já assisti' }}
                     </button>
                 </div>
             </div>
@@ -90,15 +92,34 @@
 .card
     cursor: pointer
     transition: .4s
-    color: var(--dark)
+    color: var(--white)
+    background: var(--dark)
+    overflow: hidden
     &:hover
         text-decoration: none
-        box-shadow: 1px 1px 20px rgba(0,0,0,0.5)
+        background: #202020
+    
+        .btn-outline-primary
+            background: #007bff
+            color: var(--white)
+        
+        .btn-outline-warning
+            background: #ffc107
+            color: #212529
 
     h3
+        min-height: 40px
         font-size: 1rem
 
 .card-image-top
     width: 100%
-    
+    text-align: center
+    img
+        display: inline-block
+        max-width: 100%
+        max-height: 100%
+        vertical-align: top
+        position: relative
+        object-fit: cover
+
 </style>

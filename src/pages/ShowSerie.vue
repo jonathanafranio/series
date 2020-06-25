@@ -3,7 +3,7 @@
         <p v-if="loading">Aguarde um momento...</p>
         <template v-else>
             <h1>{{ serie.title }}</h1>
-            <img :src="serie.image" :alt="serie.title" height="400" loading="lazy">
+            <img :src="serie.image.replaceAll('32','300').replaceAll('44','312')" :alt="serie.title" loading="lazy">
         </template>
     </div>
 </template>
