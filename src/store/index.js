@@ -19,27 +19,13 @@ export default new Vuex.Store({
         hasToken: state => !!state.token
     },
     mutations: {
-        setUser(state, payload) {
-            state.user = payload
-        },
-        setToken(state, payload) {
-            state.token = payload
-        },
-        setWatchlist(state, payload) {
-            state.watchlist = payload
-        },
-        setWatchedlist(state, payload) {
-            state.watchedlist = payload
-        },
-        setSerieList(state, payload) {
-            state.seriesList = payload
-        },
-        setSerie(state, payload) {
-            state.serie = payload
-        },
-        showSerie(state, payload){
-            state.serie = payload
-        }
+        setUser: (state, payload) => state.user = payload,
+        setToken: (state, payload) => state.token = payload,
+        setWatchlist: (state, payload) => state.watchlist = payload,
+        setWatchedlist: (state, payload) => state.watchedlist = payload,
+        setSerieList: (state, payload) => state.seriesList = payload,
+        setSerie: (state, payload) => state.serie = payload,
+        showSerie: (state, payload) => state.serie = payload
     },
     actions: {
         login({ dispatch }, payload){
@@ -81,8 +67,7 @@ export default new Vuex.Store({
             .then(res => res.json())
             .then(response => {
                 if(response.message == 'Sua sessão é inválida ou está expirada') {
-                    localStorage.clear()
-                    
+                    dispatch('logout')                    
                 } else {
                     dispatch('setUser', response.user)
                     dispatch('setToken', response.token)
