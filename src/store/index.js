@@ -4,6 +4,8 @@ import router from '../router'
 
 Vue.use(Vuex)
 
+const baseUrl = 'https://guarded-headland-11685.herokuapp.com'
+
 export default new Vuex.Store({
     state: {
         user: {},
@@ -41,7 +43,7 @@ export default new Vuex.Store({
     },
     actions: {
         login({ dispatch }, payload){
-            fetch('https://guarded-headland-11685.herokuapp.com/login',{
+            fetch(baseUrl+'/login',{
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -70,7 +72,7 @@ export default new Vuex.Store({
             }
         },
         loadSession({ dispatch }){
-            fetch('https://guarded-headland-11685.herokuapp.com/load-session', {
+            fetch(baseUrl+'/load-session', {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -84,7 +86,7 @@ export default new Vuex.Store({
                 } else {
                     dispatch('setUser', response.user)
                     dispatch('setToken', response.token)
-                }              
+                }
             })
             .catch(() => {
                 router.push({ name: 'login' })
@@ -104,7 +106,7 @@ export default new Vuex.Store({
             router.push({name: 'login'})
         },
         findWatchlist({ commit }){
-            fetch('https://guarded-headland-11685.herokuapp.com/user/watchlist',  {
+            fetch(baseUrl+'/user/watchlist',  {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -117,7 +119,7 @@ export default new Vuex.Store({
 
         },
         findWatchedlist({ commit }){
-            fetch('https://guarded-headland-11685.herokuapp.com/user/watchedlist',  {
+            fetch(baseUrl+'/user/watchedlist',  {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -134,7 +136,7 @@ export default new Vuex.Store({
 
         },
         findSerieslist({ commit }){
-            fetch('https://guarded-headland-11685.herokuapp.com/serie',  {
+            fetch(baseUrl+'/serie',  {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -146,7 +148,7 @@ export default new Vuex.Store({
             })
         },
         findSerie({ commit }, payload){
-            fetch('https://guarded-headland-11685.herokuapp.com/serie/'+payload, {
+            fetch(baseUrl+'/serie/'+payload, {
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -159,7 +161,7 @@ export default new Vuex.Store({
         },
 
         addOnWatchedlist(context, payload){
-            fetch('https://guarded-headland-11685.herokuapp.com/user/serie/watched', {
+            fetch(baseUrl+'/user/serie/watched', {
                 method: 'POST',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -177,7 +179,7 @@ export default new Vuex.Store({
             })
         },
         deleteFromWatchedlist(context, payload){
-            fetch('https://guarded-headland-11685.herokuapp.com/user/serie/watched/'+payload, {
+            fetch(baseUrl+'/user/serie/watched/'+payload, {
                 method: 'DELETE',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -193,7 +195,7 @@ export default new Vuex.Store({
         },
 
         addOnWatchlist(context, payload){
-            fetch('https://guarded-headland-11685.herokuapp.com/user/serie/watchlist', {
+            fetch(baseUrl+'/user/serie/watchlist', {
                 method: 'POST',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -211,7 +213,7 @@ export default new Vuex.Store({
             })
         },
         deleteFromWatchlist(context, payload){
-            fetch('https://guarded-headland-11685.herokuapp.com/user/serie/watchlist/'+payload, {
+            fetch(baseUrl+'/user/serie/watchlist/'+payload, {
                 method: 'DELETE',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
