@@ -55,7 +55,6 @@ export default new Vuex.Store({
                     dispatch('setUser', response.user)
                     dispatch('setToken', response.token)
     
-                    //window.location = '/'
                     router.push({ name: 'home' })
                     
                 } else {
@@ -67,13 +66,11 @@ export default new Vuex.Store({
             if(localStorage.getItem('token')){
                 dispatch('loadSession')
             } else {
-                //window.location = '/login'
                 router.push({ name: 'login' })
             }
         },
         loadSession({ dispatch }){
             fetch('https://guarded-headland-11685.herokuapp.com/load-session', {
-                method: 'GET',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
                     'Authorization': 'Bearer ' + localStorage.getItem('token'),
@@ -91,7 +88,6 @@ export default new Vuex.Store({
             })
             .catch(() => {
                 router.push({ name: 'login' })
-                //window.location = '/login'
             })
         },
         setUser({ commit }, payload){
