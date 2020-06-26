@@ -1,7 +1,7 @@
 <template>
     <header class="header" :class="{headerFixed: headerFixed}">
         <nav class="navbar navbar-expand-lg">
-            <button class="btn" @click="toggleMenu()">
+            <button class="btn btn-mobile" @click="toggleMenu()">
                 <i class="material-icons">
                     <template v-if="menuMobile">menu_open</template>
                     <template v-else>menu</template>
@@ -125,4 +125,8 @@
     &:hover
         outline: none
         box-shadow: none
+
+.btn-mobile
+    @media (min-width: 1024px)
+        display: none
 </style>
