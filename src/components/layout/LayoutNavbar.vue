@@ -7,7 +7,7 @@
                     <template v-else>menu</template>
                 </i>
             </button>
-            <router-link class="navbar-brand" :to="{ name: 'home' }">Series Wished</router-link>
+            <router-link class="navbar-brand" :to="{ name: 'home' }">Series</router-link>
 
             <div class="collapse navbar-collapse">
             <ul class="navbar-nav">
