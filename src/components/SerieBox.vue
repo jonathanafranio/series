@@ -59,6 +59,9 @@
                     await this.refresh()
                 } catch(error) {
                     console.error(error)
+                    document.getElementById('modalLabel').innerHTML = 'Desculpe, ocorreu um erro.'
+                    document.getElementById('modalBody').innerHTML = 'Melhor tentar de novo, amigo(a)'
+                    document.getElementById('modal').classList.add('show')
                 }
             },
             async toggleWatchedlist(idBtn){
@@ -73,6 +76,9 @@
                     await this.refresh()
                 } catch(error) {
                     console.error(error)
+                    document.getElementById('modalLabel').innerHTML = 'Desculpe, ocorreu um erro.'
+                    document.getElementById('modalBody').innerHTML = 'Melhor tentar de novo, amigo(a)'
+                    document.getElementById('modal').classList.add('show')
                 }
             },
             refresh() {
