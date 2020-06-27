@@ -160,9 +160,10 @@ export default new Vuex.Store({
                 document.getElementById('modalLabel').innerHTML = 'Adicionado...'
                 document.getElementById('modalBody').innerHTML = response.message
                 document.getElementById('modal').classList.add('show')
+                document.getElementById('watched-'+payload.serieId).classList.remove('loading')
             })
         },
-        deleteFromWatchedlist(context, payload){
+        deleteFromWatchedlist(context, payload){            
             fetch(baseUrl+'/user/serie/watched/'+payload, {
                 method: 'DELETE',
                 headers: {
@@ -174,7 +175,7 @@ export default new Vuex.Store({
                 document.getElementById('modalLabel').innerHTML = 'Removido...'
                 document.getElementById('modalBody').innerHTML = 'Série removida da lista de já assistidas'
                 document.getElementById('modal').classList.add('show')
-                console.log('Série removida da lista de já assistidas')                
+                document.getElementById('watched-'+payload).classList.remove('loading')
             })
         },
 
@@ -194,10 +195,11 @@ export default new Vuex.Store({
                 document.getElementById('modalLabel').innerHTML = 'Adicionado...'
                 document.getElementById('modalBody').innerHTML = response.message
                 document.getElementById('modal').classList.add('show')
+                document.getElementById('watchlist-'+payload.serieId).classList.remove('loading')
             })
         },
         deleteFromWatchlist(context, payload){
-            fetch(baseUrl+'/user/serie/watchlist/'+payload, {
+            fetch(baseUrl+'/user/serie/watchlist/'+ payload, {
                 method: 'DELETE',
                 headers: {
                     'Access-Control-Allow-Origin': '*',
@@ -208,7 +210,7 @@ export default new Vuex.Store({
                 document.getElementById('modalLabel').innerHTML = 'Removido...'
                 document.getElementById('modalBody').innerHTML = 'Série removida da watchlist'
                 document.getElementById('modal').classList.add('show')
-                console.log('Série removida da lista de favoritas')                
+                document.getElementById('watchlist-'+payload).classList.remove('loading')              
             })
         }
     }

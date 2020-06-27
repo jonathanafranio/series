@@ -11,7 +11,8 @@
                         <input type="password" class="form-control" placeholder="Senha" v-model="form.password" required>
                     </div>
 
-                    <button class="btn btn-danger d-blox w-100">
+                    <button class="btn btn-danger d-blox w-100" type="submit">
+                        <span class="spinner-border spinner-border-sm d-none"></span>
                         Entrar
                     </button>
                 </div>
@@ -35,6 +36,7 @@
         methods: {
             ...mapActions(['login']),
             async submit() {
+                document.querySelector('.spinner-border').classList.remove('d-none')
                 try {
                     await this.login(this.form)
 

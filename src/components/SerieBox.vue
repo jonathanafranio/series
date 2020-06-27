@@ -7,14 +7,16 @@
             <h3 class="text-center mb-0">{{ serie.title }}</h3>
             <div class="row mt-3 text-center">
                 <div class="col-12">
-                    <button class="btn btn-sm btn-outline-primary btn-block"
-                     @click.prevent="toggleWatchlist()"
+                    <button :id="'watchlist-'+serie.id" class="btn btn-sm btn-outline-primary btn-block"
+                     @click.prevent="toggleWatchlist($event.target.id)"
                      :disabled="serie.watched">
+                        <span class="spinner-border spinner-border-sm text-light"></span>
                         {{ serie.watchlist ? 'Remover do Quero assistir' : 'Quero assistir' }}
                     </button>
                 </div>
                 <div class="col-12 mt-2">
-                    <button class="btn btn-sm btn-outline-warning btn-block" @click.prevent="toggleWatchedlist()">
+                    <button :id="'watched-'+serie.id" class="btn btn-sm btn-outline-warning btn-block" @click.prevent="toggleWatchedlist($event.target.id)">
+                        <span class="spinner-border spinner-border-sm"></span>
                         {{ serie.watched ? 'Remover do Já assisti' : 'Já assisti' }}
                     </button>
                 </div>
@@ -42,18 +44,16 @@
                 'deleteFromWatchedlist',
                 'deleteFromWatchlist'
             ]),
-            async toggleWatchlist() {
+            async toggleWatchlist(idBtn) {
                 try {
+                    document.getElementById(idBtn).classList.add('loading')
                     if (this.serie.watched) {
                         await this.deleteFromWatchedlist(this.serie.id)
                     }
                     if(this.serie.watchlist){
                         await this.deleteFromWatchlist(this.serie.id)
-                        //console.log('vai tomar no cu deleta essa porra!!!');
-                        
                     } else {
                         await this.addOnWatchlist({ serieId: this.serie.id })
-                        //console.log('vai tomar no cu add essa porra!!!');
                     }
 
                     await this.refresh()
@@ -61,8 +61,9 @@
                     console.error(error)
                 }
             },
-            async toggleWatchedlist(){
+            async toggleWatchedlist(idBtn){
                 try {
+                    document.getElementById(idBtn).classList.add('loading')
                     if(this.serie.watched){
                         await this.deleteFromWatchedlist(this.serie.id)
                     } else {
@@ -116,6 +117,13 @@
 .btn
     &[disabled]
         opacity: .6
+
+    .spinner-border
+        display: none
+    
+    &.loading
+        .spinner-border
+            display: inline-block
 
 .card-image-top
     width: 100%
