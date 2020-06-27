@@ -88,7 +88,6 @@ export default {
                 &:hover
                     transform: scale(1.1)
                     text-decoration: none
-                    box-shadow: 0 10px 20px rgba(0,0,0,0.5)
 
             &:first-child
                 background-color: var(--blue)
