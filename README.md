@@ -6,7 +6,8 @@ As diferenças que no projeto original [(https://github.com/arthurzeras/series-w
 - Não usei Vue Resource para tratar e retorna promises, eu usei Fetch;
 - No projeto original o Sass e usado com a sintaxe SCSS, eu usei a sintaxe SASS;
 - As Rotas (routes) e os states, getters, mutations, actions do Vuex, o Artur fez modulando e separando por vários arquivos em cada pasta das páginas, eu não conseguir assimilar bem e por isso que fiz as rotas todas declaradas em um único arquivo: `src/router/index.js` e os states, getters, mutations e actions declaradas em um único arquivo: `src/store/index.js`.
-Com o tempo, quando estiver com mais prática com Vuex, poderei faze as stores separado por módulos;
+
+Com o tempo, quando estiver com mais prática com Vuex, poderei fazer as stores separado por módulos;
 - Acrescentei preloads nos botões, e os resultados das ações serão apresentados com modals ao invés de alert;
 - Algumas diferenças de css no layout como cores, tamanho máximo de container (1200px), responsivo;
 
