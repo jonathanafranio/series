@@ -1,32 +1,34 @@
 <template>
     <header class="header" :class="{headerFixed: headerFixed}">
         <nav class="navbar navbar-expand-lg">
-            <button class="btn btn-mobile" @click="toggleMenu()">
-                <i class="material-icons">
-                    <template v-if="menuMobile">menu_open</template>
-                    <template v-else>menu</template>
-                </i>
-            </button>
-            <router-link class="navbar-brand" :to="{ name: 'home' }">Series</router-link>
+            <div class="container-fluid">
+                <button class="btn btn-mobile" @click="toggleMenu()">
+                    <i class="material-icons">
+                        <template v-if="menuMobile">menu_open</template>
+                        <template v-else>menu</template>
+                    </i>
+                </button>
+                <router-link class="navbar-brand" :to="{ name: 'home' }">Series</router-link>
 
-            <div class="collapse navbar-collapse">
-            <ul class="navbar-nav">
-                <router-link
-                 exact
-                 :key="i"
-                 tag="li"
-                 class="nav-item"
-                 exact-active-class="active"
-                 :to="{ name: route.name }"
-                 v-for="(route, i) in routes">
-                    <a href="#" class="nav-link" :title="route.meta.title">{{ route.meta.label }}</a>
-                </router-link>
-            </ul>
+                <div class="collapse navbar-collapse">
+                <ul class="navbar-nav">
+                    <router-link
+                    exact
+                    :key="i"
+                    tag="li"
+                    class="nav-item"
+                    exact-active-class="active"
+                    :to="{ name: route.name }"
+                    v-for="(route, i) in routes">
+                        <a href="#" class="nav-link" :title="route.meta.title">{{ route.meta.label }}</a>
+                    </router-link>
+                </ul>
+                </div>
+
+                <button class="btn" @click="logOut">
+                    <i class="material-icons">exit_to_app</i>
+                </button>
             </div>
-
-            <button class="btn" @click="logOut">
-                <i class="material-icons">exit_to_app</i>
-            </button>
         </nav>
 
         <nav class="nav-mobile" :class="{show: menuMobile}">

@@ -44,7 +44,7 @@
 </script>
 <style lang="sass">
 .container-fluid
-    max-width: 1170px
+    max-width: 1200px
 
 .modal
     background: rgba(0, 0, 0, .6)
